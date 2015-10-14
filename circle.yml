@@ -8,16 +8,16 @@ machine:
 # checkout
 
 dependencies:
-  override:
-    - npm install --dev
-
-# database
-
-test:
   pre:
     - export ENABLE_FASTLANE=true
     - echo MONGO_SERVER=$MONGO_SERVER; echo ENABLE_FASTLANE=$ENABLE_FASTLANE
     - aws --version; node -v; npm -v
+  override:
+    - npm install
+
+# database
+
+test:
   override:
     - ./node_modules/.bin/mocha -R xunit > $CIRCLE_TEST_REPORTS/unittest_report.xml
 
