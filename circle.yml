@@ -1,7 +1,7 @@
 machine:
   environment:
-  	MONGO_SERVER: localhost
-  	VERSION: 0.1.0
+    MONGO_SERVER: localhost
+    VERSION: 0.1.0
   node:
     version: 0.10.33
 
@@ -17,7 +17,7 @@ test:
   pre:
     - export ENABLE_FASTLANE=true
     - echo MONGO_SERVER=$MONGO_SERVER; echo ENABLE_FASTLANE=$ENABLE_FASTLANE
-  	- aws --version; node -v; npm -v
+    - aws --version; node -v; npm -v
   override:
     - ./node_modules/.bin/mocha -R xunit > $CIRCLE_TEST_REPORTS/unittest_report.xml
 
