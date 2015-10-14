@@ -17,7 +17,7 @@ dependencies:
     - aws --version; node -v; npm -v
     - cat ~/.aws/credentials
     - env
-    - gem install fastlane
+    - sudo gem install fastlane
   override:
     - npm install
     - docker pull node:0.10-onbuild
