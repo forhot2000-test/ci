@@ -10,7 +10,7 @@ machine:
 dependencies:
   pre:
     - export ENABLE_FASTLANE=true
-    - echo MONGO_SERVER=$MONGO_SERVER; echo ENABLE_FASTLANE=$ENABLE_FASTLANE
+    - echo MONGO_SERVER=$MONGO_SERVER; echo ENABLE_FASTLANE=$ENABLE_FASTLANE; echo CIRCLE_TEST_REPORTS=$CIRCLE_TEST_REPORTS; echo CIRCLE_ARTIFACTS=$CIRCLE_ARTIFACTS
     - aws --version; node -v; npm -v
   override:
     - npm install
@@ -20,5 +20,7 @@ dependencies:
 test:
   override:
     - ./node_modules/.bin/mocha -R xunit > $CIRCLE_TEST_REPORTS/unittest_report.xml
+    - tar -czvf $CIRCLE_ARTIFACTS/src.tar.gz *
+    - tar -tvf $CIRCLE_ARTIFACTS/src.tar.gz
 
 # deployment
