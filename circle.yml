@@ -15,9 +15,11 @@ dependencies:
     - echo MONGO_SERVER=$MONGO_SERVER; echo ENABLE_FASTLANE=$ENABLE_FASTLANE
     - echo CIRCLE_TEST_REPORTS=$CIRCLE_TEST_REPORTS; echo CIRCLE_ARTIFACTS=$CIRCLE_ARTIFACTS
     - aws --version; node -v; npm -v
-    - cat ~/.aws/credentials; env
+    - cat ~/.aws/credentials
+    - env
   override:
     - npm install
+    - docker pull node:0.10-onbuild
 
 # database
 
