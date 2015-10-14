@@ -1,2 +1,2 @@
-FROM node:latest
+FROM node:0.10-onbuild
 

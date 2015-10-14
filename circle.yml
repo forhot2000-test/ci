@@ -26,6 +26,6 @@ test:
     - tar -tvf $CIRCLE_ARTIFACTS/src.tar.gz
     - docker build -t custom/ci .
     - docker run -d --name ci custom/ci; sleep 10
-    - docker ps; docker logs ci
+    - docker ps -n 1; docker logs ci
 
 # deployment
