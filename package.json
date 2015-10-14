@@ -17,6 +17,9 @@
     "url": "https://github.com/forhot2000-test/ci/issues"
   },
   "homepage": "https://github.com/forhot2000-test/ci",
+  "dependencies": {
+    "express": "^4.13.3"
+  },
   "devDependencies": {
     "assert": "^1.3.0",
     "mocha": "^2.3.3",
