@@ -10,15 +10,12 @@ machine:
 # checkout
 
 dependencies:
-  cache_directories:
-    - "~/docker"
   pre:
     - export ENABLE_FASTLANE=true
     - echo MONGO_SERVER=$MONGO_SERVER; echo ENABLE_FASTLANE=$ENABLE_FASTLANE
     - echo CIRCLE_TEST_REPORTS=$CIRCLE_TEST_REPORTS; echo CIRCLE_ARTIFACTS=$CIRCLE_ARTIFACTS
     - aws --version; node -v; npm -v
     - cat ~/.aws/credentials; env
-
   override:
     - npm install
 
