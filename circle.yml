@@ -28,4 +28,12 @@ test:
     - docker run -d --name ci custom/ci; sleep 10
     - docker ps -n 1; docker logs ci
 
-# deployment
+deployment:
+  production:
+    branch: master
+    commands:
+      - echo docker push to production ...
+  staging:
+    branch: develop
+    commands:
+      - echo docker push to staging ...
