@@ -19,11 +19,13 @@
   },
   "homepage": "https://github.com/forhot2000-test/ci",
   "dependencies": {
-    "express": "^4.13.3"
+    "express": "^4.13.3",
+    "q": "^1.4.1"
   },
   "devDependencies": {
     "assert": "^1.3.0",
-    "mocha": "^2.3.3",
-    "should": "^7.1.0"
+    "chai": "^3.3.0",
+    "chai-as-promised": "^5.1.0",
+    "mocha": "^2.3.3"
   }
 }

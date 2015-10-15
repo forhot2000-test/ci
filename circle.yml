@@ -11,13 +11,13 @@ machine:
 
 dependencies:
   pre:
-    - export ENABLE_FASTLANE=true
-    - echo MONGO_SERVER=$MONGO_SERVER; echo ENABLE_FASTLANE=$ENABLE_FASTLANE
-    - echo CIRCLE_TEST_REPORTS=$CIRCLE_TEST_REPORTS; echo CIRCLE_ARTIFACTS=$CIRCLE_ARTIFACTS
+    # - export ENABLE_FASTLANE=true
+    # - echo MONGO_SERVER=$MONGO_SERVER; echo ENABLE_FASTLANE=$ENABLE_FASTLANE
+    # - echo CIRCLE_TEST_REPORTS=$CIRCLE_TEST_REPORTS; echo CIRCLE_ARTIFACTS=$CIRCLE_ARTIFACTS
     - aws --version; node -v; npm -v
     - cat ~/.aws/credentials
-    - env
-    - sudo gem install fastlane
+    # - env
+    # - sudo gem install fastlane
   override:
     - npm install
     - docker pull node:0.10-onbuild
