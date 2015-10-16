@@ -1,4 +1,4 @@
-var Q = require('Q');
+var Q = require('q');
 var chai = require("chai");
 var chaiAsPromised = require("chai-as-promised");
 
