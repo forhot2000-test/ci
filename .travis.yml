@@ -7,6 +7,7 @@ services:
 
 before_install:
   - node -v; npm -v
+  - docker version
 
 install:
   - npm install
@@ -21,3 +22,13 @@ script:
   - docker run -d --name ci -p 3000:3000 custom/ci; sleep 10
   - docker ps -n 1; docker logs ci
   - curl --retry 10 --retry-delay 5 -v http://localhost:3000
+
+deploy:
+  - provider: script
+    script: echo hello staging
+    on:
+      branch: develop
+  - provider: script
+    script: echo hello production
+    on:
+      branch: master
