@@ -30,8 +30,9 @@ test:
     - tar -czvf $CIRCLE_ARTIFACTS/src.tar.gz *
     - tar -tvf $CIRCLE_ARTIFACTS/src.tar.gz
     - docker build -t custom/ci .
-    - docker run -d --name ci custom/ci; sleep 10
+    - docker run -d --name ci -p 3000:3000 custom/ci; sleep 10
     - docker ps -n 1; docker logs ci
+    - curl --retry 10 --retry-delay 5 -v http://localhost:3000
 
 deployment:
   production:

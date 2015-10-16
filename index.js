@@ -1,4 +1,13 @@
-var User = require('./lib/user.js');
+var express = require('express');
+var app = express();
 
-var user = new User('west');
-user.print();
+app.get('/', function (req, res) {
+  res.send('Hello World!');
+});
+
+var server = app.listen(3000, function () {
+  var host = server.address().address;
+  var port = server.address().port;
+
+  console.log('Example app listening at http://%s:%s', host, port);
+});
