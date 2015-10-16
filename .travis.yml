@@ -1,9 +1,16 @@
 sudo: require
 
-language: nodejs
+language: node_js
 
 services:
   - docker
+
+before_install:
+  - node -v; npm -v
+
+install:
+  - npm install
+  - docker pull node:0.10-onbuild
 
 before_script:
   - docker images; docker ps -a
