@@ -1,0 +1,15 @@
+sudo: require
+
+language: nodejs
+
+services:
+  - docker
+
+before_script:
+  - docker images; docker ps -a
+
+script:
+  - npm test
+  - docker build -t custom/ci .
+  - docker run -d --name ci custom/ci; sleep 10
+  - docker ps -n 1; docker logs ci
