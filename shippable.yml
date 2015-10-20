@@ -5,6 +5,13 @@ language: node_js
 node_js:
   - 0.10.25
 
+# Mongo binds to 127.0.0.1 by default
+services:
+  - mongodb
+
+install:
+  - npm install
+
 # Create directories for test and coverage reports
 before_script:
   - mkdir -p shippable/testresults
