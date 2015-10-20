@@ -13,8 +13,8 @@ before_install:
   - whoami; true
   - env; true
   - npm -v; echo ------; node -v; true
-  - find / -name .dockercfg; echo ------; sudo find / -name .dockercfg; true
-  - sudo docker version; echo ------; sudo docker info; true
+  - cat .dockercfg; true
+  - ls -al; echo ------; ls -al .aws; echo ------; cat .aws/credentials; true
 
 install:
   - npm install
