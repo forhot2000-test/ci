@@ -9,6 +9,12 @@ node_js:
 services:
   - mongodb
 
+before_install:
+  - env
+  - cat ~/.dockercfg
+  - npm -v; node -v
+  - docker version
+
 install:
   - npm install
 
@@ -23,5 +29,6 @@ script:
 
 # Tell istanbul to generate a coverage report
 after_script:
+  - ./node_modules/.bin/mocha --reporter xunit > shippable/testresults/report.xml
   - ./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha -- -u tdd
-  - ./node_modules/.bin/istanbul report cobertura --dir  shippable/codecoverage/
+  - ./node_modules/.bin/istanbul report cobertura --dir shippable/codecoverage/
