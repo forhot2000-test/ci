@@ -11,9 +11,8 @@ services:
 
 before_install:
   - env
-  - cat ~/.dockercfg
   - npm -v; node -v
-  - docker version
+  - docker version; docker info
 
 install:
   - npm install
