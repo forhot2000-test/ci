@@ -10,10 +10,11 @@ services:
   - mongodb
 
 before_install:
+  - whoami; true
   - env; true
-  - npm -v; node -v; true
-  - find / -name .dockercfg; sudo find / -name .dockercfg; true
-  - sudo docker version; sudo docker info; true
+  - npm -v; echo ------; node -v; true
+  - find / -name .dockercfg; echo ------; sudo find / -name .dockercfg; true
+  - sudo docker version; echo ------; sudo docker info; true
 
 install:
   - npm install
