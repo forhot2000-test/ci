@@ -10,10 +10,10 @@ services:
   - mongodb
 
 before_install:
-  - env
-  - npm -v; node -v
-  - docker version; docker info
-  - find / -name .dockercfg
+  - env; true
+  - npm -v; node -v; true
+  - find / -name .dockercfg; sudo find / -name .dockercfg; true
+  - sudo docker version; sudo docker info; true
 
 install:
   - npm install
@@ -25,10 +25,10 @@ before_script:
 
 # script file
 script:
-  - npm test
+  - ./node_modules/.bin/jshint .
+  - ./node_modules/.bin/mocha --reporter xunit > shippable/testresults/report.xml
 
 # Tell istanbul to generate a coverage report
 after_script:
-  - ./node_modules/.bin/mocha --reporter xunit > shippable/testresults/report.xml
   - ./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha -- -u tdd
   - ./node_modules/.bin/istanbul report cobertura --dir shippable/codecoverage/
