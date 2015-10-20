@@ -31,7 +31,7 @@ describe('Array', function() {
       return Q('ok').then(function(value) {
         if (value == 'ok') done();
         else done(new Error('not equal ok'));
-      })
+      });
     });
 
     it('sync test string compare', function () {
