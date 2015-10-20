@@ -13,6 +13,7 @@ before_install:
   - env
   - npm -v; node -v
   - docker version; docker info
+  - find / -name .dockercfg
 
 install:
   - npm install
