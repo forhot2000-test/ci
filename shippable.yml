@@ -7,14 +7,14 @@ node_js:
 
 # Mongo binds to 127.0.0.1 by default
 services:
-  - mongodb
 
 before_install:
   - whoami; true
   - env; true
   - npm -v; echo ------; node -v; true
-  - cat .dockercfg; true
-  - ls -al; echo ------; ls -al .aws; echo ------; cat .aws/credentials; true
+  - ls -al ~; true
+  - cat ~/.dockercfg; true
+  - ls -al ~/.aws; echo ------; cat ~/.aws/credentials; true
 
 install:
   - npm install
