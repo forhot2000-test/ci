@@ -33,6 +33,7 @@
     "jscs": "^2.3.5",
     "jshint": "^2.8.0",
     "mocha": "^2.3.3",
-    "should": "^7.1.1"
+    "should": "^7.1.1",
+    "should-promised": "^0.3.1"
   }
 }
