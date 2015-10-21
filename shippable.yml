@@ -8,14 +8,14 @@ node_js:
 # Mongo binds to 127.0.0.1 by default
 services:
 
-before_install:
-  - shippable_retry sudo apt-get update
-  - whoami; true
-  - env; true
-  - npm -v; echo ------; node -v; true
-  - ls -al ~; true
-  - cat ~/.dockercfg; true
-  - ls -al ~/.aws; echo ------; cat ~/.aws/credentials; true
+# before_install:
+  # - shippable_retry sudo apt-get update # sudo is forbidden
+  # - whoami; true
+  # - env; true
+  # - npm -v; echo ------; node -v; true
+  # - ls -al ~; true
+  # - cat ~/.dockercfg; true
+  # - ls -al ~/.aws; echo ------; cat ~/.aws/credentials; true
 
 install:
   - npm install
