@@ -18,8 +18,8 @@ before_script:
 
 script:
   - npm test
-  - docker build -t forhot2000/ci .
-  - docker run -d --name ci -p 3000:3000 forhot2000/ci; sleep 10
+  - docker build -t forhot2000/ci:$TRAVIS_BRANCH.$TRAVIS_BUILD_NUMBER .
+  - docker run -d --name ci -p 3000:3000 forhot2000/ci:$TRAVIS_BRANCH.$TRAVIS_BUILD_NUMBER; sleep 10
   - docker ps -n 1; docker logs ci
   - curl --retry 10 --retry-delay 5 -v http://localhost:3000
 
