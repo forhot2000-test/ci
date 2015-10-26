@@ -1,6 +1,14 @@
 language: node_js
+
 before_script:
   - which python
   - python --version
+
 script:
   - python ci/run.py
+
+branches:
+  only:
+    - master
+    - develop
+    - /^feature\/.*$/

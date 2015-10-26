@@ -13,3 +13,9 @@ before_script:
 # script file
 script:
   - python ci/run.py
+
+# include
+branches:
+  only:
+    - master
+    - develop

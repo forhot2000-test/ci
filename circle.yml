@@ -8,3 +8,9 @@ test:
     - python --version
   override:
     - python ci/run.py
+
+general:
+  branches:
+    only:
+      - master
+      - develop
