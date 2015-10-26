@@ -1,45 +1,10 @@
 machine:
-  environment:
-    MONGO_SERVER: localhost
-    VERSION: 0.1.0
   node:
     version: 0.10.33
-  services:
-    - docker
-
-# checkout
-
-dependencies:
-  pre:
-    # - export ENABLE_FASTLANE=true
-    # - echo MONGO_SERVER=$MONGO_SERVER; echo ENABLE_FASTLANE=$ENABLE_FASTLANE
-    # - echo CIRCLE_TEST_REPORTS=$CIRCLE_TEST_REPORTS; echo CIRCLE_ARTIFACTS=$CIRCLE_ARTIFACTS
-    - aws --version; node -v; npm -v
-    - docker version
-    - cat ~/.aws/credentials
-    # - env
-    # - sudo gem install fastlane
-  override:
-    - npm install
-    - docker pull node:0.10-onbuild
-
-# database
 
 test:
+  pre:
+    - which python
+    - python --version
   override:
-    - ./node_modules/.bin/jshint .
-    - ./node_modules/.bin/mocha --reporter xunit > $CIRCLE_TEST_REPORTS/unittest_report.xml
-    - docker build -t forhot2000/ci:$CIRCLE_BRANCH.$CIRCLE_BUILD_NUM .
-    - docker run -d --name ci -p 3000:3000 forhot2000/ci:$CIRCLE_BRANCH.$CIRCLE_BUILD_NUM; sleep 10
-    - docker ps -n 1; docker logs ci
-    - curl --retry 10 --retry-delay 5 -v http://localhost:3000
-
-deployment:
-  production:
-    branch: master
-    commands:
-      - echo docker push to production ...
-  staging:
-    branch: develop
-    commands:
-      - echo docker push to staging ...
+    - python ci/run.py

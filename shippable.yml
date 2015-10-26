@@ -5,32 +5,11 @@ language: node_js
 node_js:
   - 0.10.25
 
-# Mongo binds to 127.0.0.1 by default
-services:
-
-# before_install:
-  # - shippable_retry sudo apt-get update # sudo is forbidden
-  # - whoami; true
-  # - env; true
-  # - npm -v; echo ------; node -v; true
-  # - ls -al ~; true
-  # - cat ~/.dockercfg; true
-  # - ls -al ~/.aws; echo ------; cat ~/.aws/credentials; true
-
-install:
-  - npm install
-
 # Create directories for test and coverage reports
 before_script:
-  - mkdir -p shippable/testresults
-  - mkdir -p shippable/codecoverage
+  - which python
+  - python --version
 
 # script file
 script:
-  - ./node_modules/.bin/jshint .
-  - ./node_modules/.bin/mocha --reporter xunit > shippable/testresults/report.xml
-
-# Tell istanbul to generate a coverage report
-after_script:
-  - ./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha -- -u tdd
-  - ./node_modules/.bin/istanbul report cobertura --dir shippable/codecoverage/
+  - python ci/run.py
