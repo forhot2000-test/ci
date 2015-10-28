@@ -1,7 +1,10 @@
 import os
-from setuptools.command.easy_install import main as install
 
-install(['--user', 'PyYAML'])
+import pip
+pip.main(['install', 'PyYAML'])
+
+# from setuptools.command.easy_install import main as install
+# install(['--user', 'PyYAML'])
 
 import yaml
 
