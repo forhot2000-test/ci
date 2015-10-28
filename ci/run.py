@@ -1,10 +1,28 @@
 import os
+import site
+import sys
 
-import pip
-pip.main(['install', 'PyYAML'])
 
-# from setuptools.command.easy_install import main as install
-# install(['--user', 'PyYAML'])
+# this makes it work
+if not os.path.exists(site.USER_SITE):
+    os.makedirs(site.USER_SITE)
+
+sys.path.insert(0, site.USER_SITE)
+
+try:
+    import pip
+    use_pip = True
+except Exception as e:
+    from setuptools.command.easy_install import main as install
+    use_easyinstall = True
+
+
+if use_pip:
+    pip.main(['install', '--user', 'PyYAML'])
+elif use_easyinstall:
+    install(['--user', 'PyYAML'])
+
+
 
 import yaml
 
