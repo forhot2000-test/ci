@@ -16,12 +16,13 @@ except Exception as e:
     from setuptools.command.easy_install import main as install
     use_easyinstall = True
 
+def install_pkg(pkg_name):
+    if use_pip:
+        pip.main(['install', '--user', pkg_name])
+    elif use_easyinstall:
+        install(['--user', pkg_name])
 
-if use_pip:
-    pip.main(['install', '--user', 'PyYAML'])
-elif use_easyinstall:
-    install(['--user', 'PyYAML'])
-
+install_pkg('PyYAML')
 
 
 import yaml
