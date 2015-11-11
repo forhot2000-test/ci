@@ -1,5 +1,7 @@
 machine:
   environment:
+    DOCKER_IMAGE: "forhot2000/ci"
+    DOCKER_TAG: "${CIRCLE_BRANCH//\//_}.${CIRCLE_BUILD_NUM}"
     MONGO_SERVER: localhost
     VERSION: 0.1.0
   node:
@@ -29,8 +31,8 @@ test:
   override:
     - ./node_modules/.bin/jshint .
     - ./node_modules/.bin/mocha --reporter xunit > $CIRCLE_TEST_REPORTS/unittest_report.xml
-    - docker build -t forhot2000/ci:$CIRCLE_BRANCH.$CIRCLE_BUILD_NUM .
-    - docker run -d --name ci -p 3000:3000 forhot2000/ci:$CIRCLE_BRANCH.$CIRCLE_BUILD_NUM; sleep 10
+    - docker build -t $DOCKER_IMAGE:$DOCKER_TAG .
+    - docker run -d --name ci -p 3000:3000 $DOCKER_IMAGE:$DOCKER_TAG; sleep 10
     - docker ps -n 1; docker logs ci
     - curl --retry 10 --retry-delay 5 -v http://localhost:3000
 
