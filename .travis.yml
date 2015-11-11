@@ -5,6 +5,11 @@ language: node_js
 services:
   - docker
 
+env:
+  global:
+    - DOCKER_IMAGE="forhot2000/ci"
+    - DOCKER_TAG="${TRAVIS_BRANCH//\//_}.${TRAVIS_BUILD_NUMBER}"
+
 before_install:
   - node -v; npm -v
   - docker version
@@ -18,8 +23,8 @@ before_script:
 
 script:
   - npm test
-  - docker build -t forhot2000/ci:$TRAVIS_BRANCH.$TRAVIS_BUILD_NUMBER .
-  - docker run -d --name ci -p 3000:3000 forhot2000/ci:$TRAVIS_BRANCH.$TRAVIS_BUILD_NUMBER; sleep 10
+  - docker build -t $DOCKER_IMAGE:$DOCKER_TAG .
+  - docker run -d --name ci -p 3000:3000 $DOCKER_IMAGE:$DOCKER_TAG; sleep 10
   - docker ps -n 1; docker logs ci
   - curl --retry 10 --retry-delay 5 -v http://localhost:3000
 
